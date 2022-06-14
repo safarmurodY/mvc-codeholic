@@ -1,0 +1,15 @@
+{
+    "name": "cube/mvc",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "cube",
+            "email": "asd@asd.com"
+        }
+    ],
+    "require": {}
+}

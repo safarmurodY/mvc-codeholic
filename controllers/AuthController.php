@@ -2,34 +2,61 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\RegisterModel;
+use app\core\Response;
+use app\models\LoginForm;
+use app\models\User;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(Request $request, Response $response)
     {
-        $this->setLayout('auth');
-        return $this->render('login');
+        $loginForm = new LoginForm();
+//        $this->setLayout('auth');
+        if ($request->isPost()){
+            $loginForm->loadData($request->getBody());
+            if ($loginForm->validate() && $loginForm->login()){
+                Application::$app->session->setFlash('success', 'Logged In ! ! !');
+                $response->redirect( '/');
+                return ;
+            }
+        }
+        return $this->render('login', [
+            'model' => $loginForm,
+        ]);
     }
     public function register(Request $request)
     {
-        $registerModel = new RegisterModel();
-        $this->setLayout('auth');
+        $user = new User();
+//        $this->setLayout('auth');
         if ($request->isPost()){
-            $registerModel->loadData($request->getBody());
+            $user->loadData($request->getBody());
 
-            if ($registerModel->validate() && $registerModel->register()){
-                echo 'WoW O_o';
+            if ($user->validate() && $user->save()){
+
+                Application::$app->session->setFlash('success', 'Registered ! ! !');
+                Application::$app->response->redirect( '/');
             }
 
             return $this->render('register', [
-                'model' => $registerModel
+                'model' => $user
             ]);
         }
         return $this->render('register', [
-            'model' => $registerModel
+            'model' => $user
         ]);
+    }
+
+    public function logout(Request $request, Response $response)
+    {
+        Application::$app->logout();
+        $response->redirect('/');
+    }
+
+    public function profile()
+    {
+        return $this->render('profile');
     }
 }

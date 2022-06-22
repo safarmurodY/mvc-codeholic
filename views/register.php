@@ -1,17 +1,28 @@
 <?php
 
-/** @var $model \app\models\RegisterModel */
+/** @var $model \app\models\User */
 
 use app\core\form\Form;
+
 ?>
 
 <h1>Create an account</h1>
 
 <?php $form = Form::begin('', 'post') ?>
-    <?= $form->field($model, 'firstname') ?>
-    <?= $form->field($model, 'lastname') ?>
+
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'firstname') ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'lastname') ?>
+        </div>
+    </div>
+
     <?= $form->field($model, 'email') ?>
     <?= $form->field($model, 'password')->passwordField() ?>
     <?= $form->field($model, 'passwordConfirm')->passwordField() ?>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+<button type="submit" class="btn btn-primary">Submit</button>
+
 <?php $form::end() ?>

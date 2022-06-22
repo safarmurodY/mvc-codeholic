@@ -22,6 +22,7 @@ class Database
         $appliedMigrations = $this->getAppliedMigrations();
         $files = scandir(Application::$ROOT_DIR . '/migrations');
         $toApply = array_diff($files, $appliedMigrations);
+
         $newMigrations = [];
         foreach ($toApply as $migration) {
 
@@ -30,16 +31,17 @@ class Database
             }
             require_once Application::$ROOT_DIR . '/migrations/' . $migration;
             $className = pathinfo($migration, PATHINFO_FILENAME);
+
             $instance = new $className();
-            echo "App $migration" . PHP_EOL;
+            $this->log("Applying $migration");
             $instance->up();
             $newMigrations[] = $migration;
-            echo "End $migration" . PHP_EOL;
+            $this->log("Applied $migration");
         }
         if (!empty($newMigrations)){
             $this->saveMigrations($newMigrations);
         }else{
-            echo "All migrations applied";
+            $this->log("All migrations applied");
         }
     }
 
@@ -61,10 +63,22 @@ class Database
 
     public function saveMigrations(array $migrations)
     {
-        array_map(fn($m) => "('')");
-        $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES (:mig)");
-        $statement->execute([
-            'mig' => $migrations
-        ]);
+
+        $str = implode(',', array_map(fn($m) => "('$m')", $migrations));
+
+        $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES 
+            {$str}                                   
+        ");
+        $statement->execute();
+    }
+
+    protected function log($message)
+    {
+        echo '[' . date('d-m-Y H:i:s') . '] ' . $message . PHP_EOL;
+    }
+
+    public function prepare($sql)
+    {
+        return $this->pdo->prepare($sql);
     }
 }

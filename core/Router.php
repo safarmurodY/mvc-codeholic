@@ -36,7 +36,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
         if (!$callback){
             $this->response->setStatusCode(404);
-            return$this->renderView('_404');
+            return $this->renderView('_404');
         }
         if (is_array($callback)){
             Application::$app->controller = new $callback[0]();
@@ -46,7 +46,7 @@ class Router
         if (is_string($callback)){
             return $this->renderView($callback);
         }
-        return call_user_func($callback, $this->request);
+        return call_user_func($callback, $this->request, $this->response);
     }
 
     public function renderView(string $view, $params = [])
@@ -59,7 +59,10 @@ class Router
 
     protected function layoutContent()
     {
-        $layout = Application::$app->controller->layout;
+        $layout = Application::$app->layout;
+        if (Application::$app->controller){
+            $layout = Application::$app->controller->layout;
+        }
         ob_start();
         include_once Application::$ROOT_DIR."/views/layouts/$layout.php";
         return  ob_get_clean();

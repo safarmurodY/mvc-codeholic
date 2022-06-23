@@ -2,11 +2,11 @@
 
 namespace app\controllers;
 
-use app\core\Application;
-use app\core\Controller;
-use app\core\middlewares\AuthMiddleware;
-use app\core\Request;
-use app\core\Response;
+use Safarmurod\PhpMvcCore\Application;
+use Safarmurod\PhpMvcCore\Controller;
+use Safarmurod\PhpMvcCore\middlewares\AuthMiddleware;
+use Safarmurod\PhpMvcCore\Request;
+use Safarmurod\PhpMvcCore\Response;
 use app\models\LoginForm;
 use app\models\User;
 

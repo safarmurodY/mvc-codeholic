@@ -1,7 +1,7 @@
 <?php
 
 
-use app\core\Application;
+use Safarmurod\PhpMvcCore\Application;
 
 class m0001_initial
 {

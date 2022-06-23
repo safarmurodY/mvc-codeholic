@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80c8b1ec238ee6390d8e224d9ce676b4",
+    "content-hash": "c520b3cfdf86c77b381348e5b38b8873",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -138,6 +138,39 @@
                 }
             ],
             "time": "2021-12-04T23:24:31+00:00"
+        },
+        {
+            "name": "safarmurod/php-mvc-core",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/safarmurodY/safarmurod-php-mvc-core.git",
+                "reference": "0d2b3787365846f8d4e1ce157ee5d9fbc087bf7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/safarmurodY/safarmurod-php-mvc-core/zipball/0d2b3787365846f8d4e1ce157ee5d9fbc087bf7f",
+                "reference": "0d2b3787365846f8d4e1ce157ee5d9fbc087bf7f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Safarmurod\\PhpMvcCore\\": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "cube",
+                    "email": "safarmurod20014@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/safarmurodY/safarmurod-php-mvc-core/issues",
+                "source": "https://github.com/safarmurodY/safarmurod-php-mvc-core/tree/v1.0.1"
+            },
+            "time": "2022-06-23T08:22:18+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",

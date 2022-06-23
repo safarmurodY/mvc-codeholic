@@ -2,8 +2,8 @@
 
 namespace app\models;
 
-use app\core\Application;
-use app\core\Model;
+use Safarmurod\PhpMvcCore\Application;
+use Safarmurod\PhpMvcCore\Model;
 
 class LoginForm extends Model
 {

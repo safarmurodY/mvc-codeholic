@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use app\core\Model;
+use Safarmurod\PhpMvcCore\Model;
 
 class ContactForm extends Model
 {

@@ -1,6 +1,6 @@
 <?php
 
-use app\core\Application;
+use Safarmurod\PhpMvcCore\Application;
 
 ?>
 <h1>Hi Welcome
